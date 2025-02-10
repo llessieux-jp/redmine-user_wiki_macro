@@ -15,21 +15,26 @@
 [Documentation][doc]
 
 Adds a `{{user(login_name)}}` macro to the Redmine's wiki engine.
+also adds an extended version of the issue macro
+
+
+`{{user_issue(123, subject=true, project=true, priority=true, version=true }}`
+
+This new macro follow the rules of the issue macro and adds the priority in [], followed by the version in {} and finally the assigned user in ().
+
 
 ![Screenshot](http://neopoly.github.io/redmine-user_wiki_macro/images/screenshot.png)
 
+This version of the plugin has been tested on Redmine 5.1 and 6.0
+
 ## Installation
 
-Ensure you have a `Gemfile.local` file in your Redmine installation. Add to your `Gemfile.local`:
+Extract the macro code into the redmine\plugins folder.
 
-```ruby
-gem "redmine-user_wiki_macro"
-```
-
-And then execute:
+Then just build it.
 
 ```
-$ bundle
+$ bundle exec rake redmine:plugins:migrate NAME=redmine_user_wiki_macro RAILS_ENV=production
 ```
 
 Restart the Redmine application
