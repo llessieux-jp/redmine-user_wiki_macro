@@ -1,16 +1,10 @@
-[github]: https://github.com/neopoly/redmine-user_wiki_macro
-[doc]: http://rubydoc.info/github/neopoly/redmine-user_wiki_macro/master/file/README.md
-[gem]: https://rubygems.org/gems/redmine-user_wiki_macro
-[gem-badge]: https://img.shields.io/gem/v/redmine-user_wiki_macro.svg
-[inchpages]: https://inch-ci.org/github/neopoly/redmine-user_wiki_macro
-[inchpages-badge]: https://inch-ci.org/github/neopoly/redmine-user_wiki_macro.svg?branch=master&style=flat
+[github]: https://github.com/llessieux-jp/redmine-user_wiki_macro
+[doc]: http://rubydoc.info/github/llessieux-jp/redmine-user_wiki_macro/master/file/README.md
 
 # redmine-user_wiki_macro
 
-[![Gem Version][gem-badge]][gem]
-[![Inline docs][inchpages-badge]][inchpages]
+Forked from https://github.com/neopoly/redmine-user_wiki_macro
 
-[Gem][gem] |
 [Source][github] |
 [Documentation][doc]
 
