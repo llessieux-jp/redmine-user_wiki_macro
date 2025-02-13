@@ -63,7 +63,7 @@ module RedmineUserWikiMacro
 					if issue.assigned_to_id 
 						user = User.find_by_id(issue.assigned_to_id)
 						if user 
-							user_txt = " (" + user.login + ")"
+							user_txt = " (" + user.name + ")"
 						end
 					end
 					
@@ -77,12 +77,12 @@ module RedmineUserWikiMacro
 					 priority_name = nil;
 					 if issue.priority != nil  
 					 	priority_name =" ["+issue.priority.name+"]"
-					 end 
+					 end
 					
 					 s = link_to_issue(issue, options)								 
 					 s << h(priority_name) if priority_name
 					 s << link_to(version_name, issue.fixed_version) if version_name
-					 s << link_to(user_txt, user.login) if user
+					 s << link_to(user_txt, user_path(user)) if user
 			     s
 				 else
 					 # Fall back to regular issue link format to indicate, that there
