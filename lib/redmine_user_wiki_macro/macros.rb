@@ -43,9 +43,10 @@ module RedmineUserWikiMacro
 							"{{user_issue(123)}}                              -- Issue #123: Enhance macro capabilities\n" +
 							"{{user_issue(123, project=true)}}                -- Andromeda - Issue #123: Enhance macro capabilities\n" +
 							"{{user_issue(123, tracker=false)}}               -- #123: Enhance macro capabilities\n" +
-							"{{user_issue(123, subject=false, project=true, priority=true, version=true )}} -- Andromeda - Issue #123 [High] {Deadline1} (someone) \n"
+							"{{user_issue(123, subject=false, project=true, priority=true, version=true )}} -- Andromeda(this is a link) - Issue #123 [High] {Deadline1} (someone) \n"
+							"{{user_issue(123, subject=false, project=true, priority=true, version=true, noprojectlink=true )}} -- Andromeda(this is plain text) - Issue #123 [High] {Deadline1} (someone) \n"
 			macro :user_issue do |obj, args|
-				 args, options = extract_macro_options(args, :project, :subject, :tracker, :assigned_to, :priority, :version)
+				 args, options = extract_macro_options(args, :project, :subject, :tracker, :assigned_to, :priority, :version, :noprojectlink)
 				 id = args.first
 				 issue = Issue.visible.find_by(id: id)
 				 user = nil
@@ -78,11 +79,19 @@ module RedmineUserWikiMacro
 					 if issue.priority != nil  
 					 	priority_name =" ["+issue.priority.name+"]"
 					 end
-					
+					need_project = nil
+					if options[:noprojectlink]
+						need_project = false
+					else
+						need_project = options[:project]
+						options[:project] = false
+					end
+
 					 s = link_to_issue(issue, options)								 
 					 s << h(priority_name) if priority_name
 					 s << link_to(version_name, issue.fixed_version) if version_name
 					 s << link_to(user_txt, user_path(user)) if user
+					 s = link_to_project(issue.project) + " - " + s if need_project
 			     s
 				 else
 					 # Fall back to regular issue link format to indicate, that there
